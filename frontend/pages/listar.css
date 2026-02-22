@@ -75,3 +75,25 @@ li:hover {
     color: #93c5fd;
     align-self: flex-end;
 }
+.btn-apagar {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background-color: transparent;
+    color: #ef4444; /* Vermelho suave */
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+}
+
+.btn-apagar:hover {
+    background-color: rgba(239, 68, 68, 0.15); /* Fundo vermelho translúcido ao passar o mouse */
+    color: #f87171;
+    transform: scale(1.1);
+}

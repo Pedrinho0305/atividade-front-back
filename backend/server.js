@@ -13,6 +13,7 @@ const db = mysql.createConnection({
     database: 'web_03mb'
 })
 
+// Rota para LER (Get)
 app.get('/produtos', (req, res) => {
     const sql = 'SELECT * FROM produtosPedro'
     db.query(sql, (err, data) => {
@@ -21,6 +22,7 @@ app.get('/produtos', (req, res) => {
     })
 })
 
+// Rota para CRIAR (Post)
 app.post('/produtos', (req, res) => {
     const sql = 'INSERT INTO produtosPedro (nome, preco) VALUES (?)'
     const values = [
@@ -30,6 +32,17 @@ app.post('/produtos', (req, res) => {
     db.query(sql, [values], (err, data) => {
         if (err) return res.json(err)
         return res.json('Produto cadastrado')
+    })
+})
+
+// NOVA ROTA: DELETAR (Delete)
+app.delete('/produtos/:id', (req, res) => {
+    const sql = 'DELETE FROM produtosPedro WHERE id = ?'
+    const id = req.params.id // Pega o ID que vem na URL
+
+    db.query(sql, [id], (err, data) => {
+        if (err) return res.json(err)
+        return res.json('Produto deletado com sucesso')
     })
 })
 
