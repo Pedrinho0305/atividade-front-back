@@ -35,6 +35,24 @@ app.post('/produtos', (req, res) => {
     })
 })
 
+// NOVA ROTA: ATUALIZAR (Put)
+app.put('/produtos/:id', (req, res) => {
+    const sql = 'UPDATE produtosPedro SET nome = ?, preco = ? WHERE id = ?'
+    const id = req.params.id
+    
+    // Os valores precisam estar na mesma ordem das interrogações (?) no SQL
+    const values = [
+        req.body.nome,
+        req.body.preco,
+        id
+    ]
+
+    db.query(sql, values, (err, data) => {
+        if (err) return res.json(err)
+        return res.json('Produto atualizado com sucesso')
+    })
+})
+
 // NOVA ROTA: DELETAR (Delete)
 app.delete('/produtos/:id', (req, res) => {
     const sql = 'DELETE FROM produtosPedro WHERE id = ?'
